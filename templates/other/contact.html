@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrap contact" id="contact">
+        <div class="grid grid-pad">
+            <h2>Contact Us</h2>
+            <div class="col-1-2">
+                <div class="content address">
+                    <h3>Talk to us</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto fugit esse soluta quae
+                        debitis quibusdam harum voluptatem, maxime, aliquam sequi. Tempora ipsum magni unde velit
+                        corporis fuga, necessitatibus blanditiis.</p>
+                    <address>
+                        <div>
+                            <div class="box-icon">
+                                <i class="icon-location"></i>
+                            </div>
+                            <span>Address:</span>
+                            <p>9700 Shumen, Bulgaria, Saedinenie 66, Apartment 17</p>
+                        </div>
+
+                        <div>
+                            <div class="box-icon">
+                                <i class="icon-clock"></i>
+                            </div>
+                            <span>Work Time:</span>
+                            <p>Monday - Friday from 9am to 5pm</p>
+                        </div>
+
+                        <div>
+                            <div class="box-icon">
+                                <i class="icon-phone"></i>
+                            </div>
+                            <span>Phone:</span>
+                            <p>0885550163</p>
+                        </div>
+                    </address>
+                </div>
+            </div>
+            <div class="col-1-2 pleft-25">
+                <div class="content contact-form">
+                    <form class="form">
+                        <input type="text" class="comment-name" placeholder="Name*" required>
+                        <input type="email" class="comment-email" placeholder="Email*" required>
+                        <input type="text" class="comment-subject" placeholder="Subject">
+                        <textarea class="required comment-text" placeholder="Message..." required></textarea>
+                        <input type="submit" value="Send Message" class="btn submit comment-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Contact Section -->
+{% endblock %}

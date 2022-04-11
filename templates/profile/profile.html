@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Welcome, {{ appuser.email }}</h2>
+    <br>
+    {% if user.is_active and user.is_superuser %}
+        <a href="{% url 'admin panel' %}" class="btn btn-ghost">Admin Panel</a>
+    {% endif %}
+    <br>
+    <a href="{% url 'change password' %}" class="btn btn-ghost">Change Password</a>
+{% endblock %}

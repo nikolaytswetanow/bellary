@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="wrapper">
+
+        <div class="photoCover">
+            <img src="{{ photo.photo.url }}" width="200px" height="220px" alt="Cover Image">
+        </div>
+
+        {% if photo.description|length < 100 %}
+
+            <div class="photoText-2">
+                {#                    <h1>Uploaded by: {{ name }}</h1>#}
+                {% if photo.description %}
+                    <p>{{ photo.description }}</p>
+                {% endif %}
+            </div>
+
+        {% else %}
+            <div class="photoText">
+{#                <p>Uploaded by: nikolaytswetanow@gmail.com </p>#}
+                {% if photo.description %}
+                    <p>{{ photo.description }}</p>
+                {% endif %}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

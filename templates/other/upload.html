@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h2>Upload all your favourite photos.</h2>
+        <br>
+        <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-ghost">Upload</button>
+        </form>
+    </div>
+{% endblock %}

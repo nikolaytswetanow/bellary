@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if not photos %}
+        <div>
+            <h2>A gallery, but different!</h2>
+            <p>The gallery is currently empty!
+                Feel free to <a href="{% url 'signup' %}">SIGN UP</a> and upload photos
+                <br>
+                or you can directly <a href="{% url 'upload' %}">UPLOAD</a> photos to our
+                gallery if you have a registration.</p>
+        </div>
+    {% else %}
+        <div>
+            <h2>A gallery, but different!</h2>
+            <p>Browse the photos uploaded by our users.</p>
+        </div>
+    {% endif %}
+    {% for photo in photos %}
+        <a href="{% url 'photo details' photo.pk %}">
+            <div class="card-box">
+                <img class="card-box-img" src="{{ photo.photo.url }}" width="200px" height="220px"
+                     alt="Cover Image">
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}
