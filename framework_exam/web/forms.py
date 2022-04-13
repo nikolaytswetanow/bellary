@@ -84,3 +84,13 @@ class FileUploadForm(forms.ModelForm):
             'photo': '',
             'description': '',
         }
+
+
+class DeletePhotoForm(forms.ModelForm):
+    def save(self, commit=True):
+        self.instance.delete()
+        return self.instance
+
+    class Meta:
+        model = Photo
+        exclude = ('user', )

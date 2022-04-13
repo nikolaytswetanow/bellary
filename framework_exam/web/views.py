@@ -4,7 +4,8 @@ from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
 from django.shortcuts import render
 
-from framework_exam.web.forms import UserRegistrationForm, UserLoginForm, FileUploadForm, ChangePasswordForm
+from framework_exam.web.forms import UserRegistrationForm, UserLoginForm, FileUploadForm, ChangePasswordForm, \
+    DeletePhotoForm
 from framework_exam.web.models import Photo, AppUser
 
 
@@ -24,6 +25,26 @@ def profile(request):
     }
 
     return render(request, 'profile/profile.html', context)
+
+
+def gallery(request):
+    photos = Photo.objects.all()
+
+    context = {
+        'photos': photos,
+    }
+
+    return render(request, 'other/gallery.html', context)
+
+
+def changepassword(request):
+    form = ChangePasswordForm
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'auth/change-password-page.html', context)
 
 
 class UserRegistrationView(views.CreateView):
@@ -50,29 +71,9 @@ class UserLogoutView(auth_views.LogoutView):
     pass
 
 
-def gallery(request):
-    photos = Photo.objects.all()
-
-    context = {
-        'photos': photos,
-    }
-
-    return render(request, 'other/gallery.html', context)
-
-
 class ChangePasswordView(auth_views.PasswordChangeView):
     form_class = ChangePasswordForm
     template_name = 'auth/change-password-page.html'
-
-
-def changepassword(request):
-    form = ChangePasswordForm
-
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'auth/change-password-page.html', context)
 
 
 class UploadPhotoView(auth_mixin.LoginRequiredMixin, views.CreateView):
@@ -81,8 +82,27 @@ class UploadPhotoView(auth_mixin.LoginRequiredMixin, views.CreateView):
 
     success_url = reverse_lazy('gallery')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
-class PhotoDetailsView(auth_mixin.LoginRequiredMixin, views.DetailView):
+
+class PhotoDetailsView(views.DetailView):
     model = Photo
     template_name = 'other/photo_details.html'
     context_object_name = 'photo'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['is_owner'] = self.object.user == self.request.user
+
+        return context
+
+
+class PhotoDeleteView(auth_mixin.LoginRequiredMixin, views.DeleteView):
+    model = Photo
+    template_name = 'other/photo_details.html'
+    context_object_name = 'photo'
+    form_class = DeletePhotoForm
+    success_url = reverse_lazy('home')

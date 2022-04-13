@@ -17,7 +17,7 @@
 
         {% else %}
             <div class="photoText">
-{#                <p>Uploaded by: nikolaytswetanow@gmail.com </p>#}
+                {#                <p>Uploaded by: nikolaytswetanow@gmail.com </p>#}
                 {% if photo.description %}
                     <p>{{ photo.description }}</p>
                 {% endif %}
@@ -26,5 +26,13 @@
         {% endif %}
 
     </div>
+
+    {% if is_owner %}
+    <form method="post" action="{% url 'photo delete' photo.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-ghost" type="submit">Delete</button>
+    </form>
+    {% endif %}
 
 {% endblock %}

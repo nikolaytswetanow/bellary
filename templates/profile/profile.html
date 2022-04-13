@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% csrf_token %}
     <h2>Welcome, {{ appuser.email }}</h2>
     <br>
     {% if user.is_active and user.is_superuser %}

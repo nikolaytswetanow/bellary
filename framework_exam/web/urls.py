@@ -2,7 +2,7 @@ from django.urls import path, reverse_lazy
 from django.views.generic import RedirectView
 
 from framework_exam.web.views import home, UserRegistrationView, UserLoginView, UserLogoutView, gallery, \
-    UploadPhotoView, ChangePasswordView, profile, contact, PhotoDetailsView
+    UploadPhotoView, ChangePasswordView, profile, contact, PhotoDetailsView, PhotoDeleteView
 
 urlpatterns = (
     path('', home, name='home'),
@@ -15,6 +15,7 @@ urlpatterns = (
 
     path('gallery/', gallery, name='gallery'),
     path('photo/details/<int:pk>/', PhotoDetailsView.as_view(), name='photo details'),
+    path('photo/delete/<int:pk>/', PhotoDeleteView.as_view(), name='photo delete'),
 
     path('upload/', UploadPhotoView.as_view(), name='upload'),
     path('contact-us/', contact, name='contact'),

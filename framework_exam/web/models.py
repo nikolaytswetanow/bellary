@@ -41,28 +41,7 @@ class Photo(models.Model):
         auto_now_add=True,
     )
 
-    likes = models.IntegerField(
-        default=0,
+    user = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
     )
-
-# class Profile(models.Model):
-#     FIRST_NAME_MAX_LENGTH = 30
-#     LAST_NAME_MAX_LENGTH = 30
-#
-#     first_name = models.CharField(
-#         max_length=FIRST_NAME_MAX_LENGTH,
-#     )
-#
-#     last_name = models.CharField(
-#         max_length=LAST_NAME_MAX_LENGTH,
-#     )
-#
-#     user = models.OneToOneField(
-#         AppUser,
-#         on_delete=models.CASCADE,
-#         primary_key=True,
-#     )
-#
-#     @property
-#     def full_name(self):
-#         return f"{self.first_name} {self.last_name}"

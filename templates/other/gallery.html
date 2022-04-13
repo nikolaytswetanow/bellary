@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% csrf_token %}
     {% if not photos %}
         <div>
             <h2>A gallery, but different!</h2>
