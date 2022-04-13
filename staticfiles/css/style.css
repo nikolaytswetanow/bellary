@@ -357,7 +357,7 @@ blockquote p {
     background-size: 104px 46px;
     font-size: 36px;
     /*text-indent: -9999px;*/
-    /*background: url(/static/images/logo.svg) no-repeat;*/
+    /*background: url(/staticfiles/images/logo.svg) no-repeat;*/
 }
 
 /*.logo:hover, .logo:focus {*/
@@ -521,15 +521,15 @@ blockquote p {
 }
 
 .home-slide-1 {
-    background-image: url('/static/images/slider/big1.jpg');
+    background-image: url('/staticfiles/images/slider/big1.jpg');
 }
 
 .home-slide-2 {
-    background-image: url('/static/images/slider/big2.jpg');
+    background-image: url('/staticfiles/images/slider/big2.jpg');
 }
 
 .home-slide-3 {
-    background-image: url('/static/images/slider/big3.jpg');
+    background-image: url('/staticfiles/images/slider/big3.jpg');
 }
 
 /* *********************************************************
@@ -539,7 +539,7 @@ blockquote p {
 .parallax-section {
     z-index: -1;
     clear: both;
-    background-image: url('/static/images/home.jpg');
+    background-image: url('/staticfiles/images/home.jpg');
     background-repeat: repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -810,7 +810,7 @@ blockquote p {
     width: 8px;
     height: 22px;
     text-indent: -9999px;
-    background: url(/static/images/arrows.png) no-repeat;
+    background: url(/staticfiles/images/arrows.png) no-repeat;
 }
 
 .header-carousel .owl-buttons .owl-prev {
