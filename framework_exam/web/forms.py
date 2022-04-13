@@ -1,3 +1,5 @@
+import os
+
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django.contrib.auth.forms import UsernameField
@@ -88,9 +90,10 @@ class FileUploadForm(forms.ModelForm):
 
 class DeletePhotoForm(forms.ModelForm):
     def save(self, commit=True):
+        os.remove(self.instance.photo)
         self.instance.delete()
         return self.instance
 
     class Meta:
         model = Photo
-        exclude = ('user', )
+        exclude = ('user',)
