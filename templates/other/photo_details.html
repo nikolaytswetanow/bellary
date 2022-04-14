@@ -1,38 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="wrapper">
-
         <div class="photoCover">
             <img src="{{ photo.photo.url }}" width="200px" height="220px" alt="Cover Image">
         </div>
 
-        {% if photo.description|length < 100 %}
+        <div class="photoText">
+            {#                <p>Uploaded by: nikolaytswetanow@gmail.com </p>#}
+            {% if photo.description %}
+                <p>{{ photo.description }}</p>
+            {% endif %}
+        </div>
 
-            <div class="photoText-2">
-                {#                    <h1>Uploaded by: {{ name }}</h1>#}
-                {% if photo.description %}
-                    <p>{{ photo.description }}</p>
-                {% endif %}
-            </div>
-
-        {% else %}
-            <div class="photoText">
-                {#                <p>Uploaded by: nikolaytswetanow@gmail.com </p>#}
-                {% if photo.description %}
-                    <p>{{ photo.description }}</p>
-                {% endif %}
-            </div>
-
-        {% endif %}
 
     </div>
 
     {% if is_owner %}
-    <form method="post" action="{% url 'photo delete' photo.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <button class="btn btn-ghost" type="submit">Delete</button>
-    </form>
+        <form method="post" action="{% url 'photo delete' photo.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-ghost" type="submit">Delete</button>
+        </form>
+        <form method="post" action="{% url 'photo edit' photo.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn btn-ghost" type="submit">Edit</button>
+        </form>
     {% endif %}
 
 {% endblock %}

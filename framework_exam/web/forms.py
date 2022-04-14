@@ -1,8 +1,7 @@
-import os
-
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django.contrib.auth.forms import UsernameField
+from django.forms import ClearableFileInput
 
 from framework_exam.web.models import Photo
 
@@ -80,7 +79,7 @@ class FileUploadForm(forms.ModelForm):
         widgets = {
             'description': forms.TextInput(
                 attrs={'placeholder': 'Write down the description of your favourite photo.',
-                       'maxlength': '475', 'style': 'text-align: center;'}),
+                       'maxlength': '100', 'style': 'text-align: center;'}),
         }
         labels = {
             'photo': '',
@@ -90,10 +89,45 @@ class FileUploadForm(forms.ModelForm):
 
 class DeletePhotoForm(forms.ModelForm):
     def save(self, commit=True):
-        os.remove(self.instance.photo)
         self.instance.delete()
         return self.instance
 
     class Meta:
         model = Photo
         exclude = ('user',)
+
+
+class MyClearableFileInput(ClearableFileInput):
+    clear_checkbox_label = ""
+    initial_text = ""
+    input_text = ""
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context["widget"].update(
+            {
+                "checkbox_name": '',
+                "checkbox_id": '',
+                "is_initial": '',
+                "input_text": '',
+                "initial_text": '',
+                "clear_checkbox_label": '',
+            }
+        )
+        return context
+
+
+class EditPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('photo', 'description')
+        widgets = {
+            'photo': MyClearableFileInput,
+            'description': forms.TextInput(
+                attrs={'placeholder': 'Write down the description of your favourite photo.',
+                       'maxlength': '100', 'style': 'text-align: center;'}),
+        }
+        labels = {
+            'photo': '',
+            'description': '',
+        }

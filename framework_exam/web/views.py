@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views, login
 from django.shortcuts import render
 
 from framework_exam.web.forms import UserRegistrationForm, UserLoginForm, FileUploadForm, ChangePasswordForm, \
-    DeletePhotoForm
+    DeletePhotoForm, EditPhotoForm
 from framework_exam.web.models import Photo, AppUser
 
 
@@ -106,3 +106,13 @@ class PhotoDeleteView(auth_mixin.LoginRequiredMixin, views.DeleteView):
     context_object_name = 'photo'
     form_class = DeletePhotoForm
     success_url = reverse_lazy('home')
+
+
+class PhotoEditView(auth_mixin.LoginRequiredMixin, views.UpdateView):
+    model = Photo
+    template_name = 'other/photo_edit.html'
+    context_object_name = 'photo'
+    form_class = EditPhotoForm
+
+    def get_success_url(self):
+        return reverse_lazy('photo edit', kwargs={'pk': self.object.id})
