@@ -94,7 +94,7 @@ class DeletePhotoForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        exclude = ('user',)
+        exclude = ('user', 'photo')
 
 
 class MyClearableFileInput(ClearableFileInput):
