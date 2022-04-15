@@ -28,8 +28,6 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
 class Photo(models.Model):
     photo = models.FileField(
-        null=True,
-        blank=True,
         validators=[FileExtensionValidator(['png', 'jpg'])])
 
     description = models.TextField(
