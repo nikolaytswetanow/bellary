@@ -97,24 +97,24 @@ class DeletePhotoForm(forms.ModelForm):
         exclude = ('user', 'photo')
 
 
-class MyClearableFileInput(ClearableFileInput):
-    clear_checkbox_label = ""
-    initial_text = ""
-    input_text = ""
+# class MyClearableFileInput(ClearableFileInput):
+#     clear_checkbox_label = ""
+#     initial_text = ""
+#     input_text = ""
 
-    def get_context(self, name, value, attrs):
-        context = super().get_context(name, value, attrs)
-        context["widget"].update(
-            {
-                "checkbox_name": '',
-                "checkbox_id": '',
-                "is_initial": '',
-                "input_text": '',
-                "initial_text": '',
-                "clear_checkbox_label": '',
-            }
-        )
-        return context
+#     def get_context(self, name, value, attrs):
+#         context = super().get_context(name, value, attrs)
+#         context["widget"].update(
+#             {
+#                 "checkbox_name": '',
+#                 "checkbox_id": '',
+#                 "is_initial": '',
+#                 "input_text": '',
+#                 "initial_text": '',
+#                 "clear_checkbox_label": '',
+#             }
+#         )
+#         return context
 
 
 class EditPhotoForm(forms.ModelForm):
@@ -122,12 +122,10 @@ class EditPhotoForm(forms.ModelForm):
         model = Photo
         fields = ('description', )
         widgets = {
-            'photo': MyClearableFileInput,
             'description': forms.TextInput(
                 attrs={'placeholder': 'Write down the description of your favourite photo.',
                        'maxlength': '100', 'style': 'text-align: center;'}),
         }
         labels = {
-            'photo': '',
             'description': '',
         }
