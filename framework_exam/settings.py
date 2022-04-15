@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 APP_ENVIRONMENT = os.getenv('APP_ENVIRONMENT', 'Development')
 SECRET_KEY = os.getenv('SECRET_KEY', 'sk')
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(' ')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'test-bellary.herokuapp.com').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,11 +61,11 @@ WSGI_APPLICATION = 'framework_exam.wsgi.application'
 
 DEFAULT_DATABASE_CONFIG = {
     'ENGINE': 'django.db.backends.postgresql',
-    'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-    'PORT': os.getenv('DB_PORT', '5432'),  # if no env variable DB_PORT, return '5432'
-    'NAME': os.getenv('DB_NAME', 'postgres'),
-    'USER': os.getenv('DB_USER', 'postgres'),
-    'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
+    'HOST': os.getenv('DB_HOST', None),
+    'PORT': os.getenv('DB_PORT', '5432'),
+    'NAME': os.getenv('DB_NAME', None),
+    'USER': os.getenv('DB_USER', None),
+    'PASSWORD': os.getenv('DB_PASSWORD', None),
 }
 
 DATABASES = {
