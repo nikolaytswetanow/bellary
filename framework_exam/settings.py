@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 APP_ENVIRONMENT = os.getenv('APP_ENVIRONMENT', 'Development')
 SECRET_KEY = os.getenv('SECRET_KEY', 'sk')
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'test-bellary.herokuapp.com').split(' ')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
