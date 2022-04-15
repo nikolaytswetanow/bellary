@@ -7,7 +7,13 @@
             <p>The gallery is currently empty!
                 Feel free to <a href="{% url 'signup' %}">SIGN UP</a> and upload photos
                 <br>
-                or you can directly <a href="{% url 'upload' %}">UPLOAD</a> photos to our
+                or you can directly
+                {% if user.is_authenticated %}
+                    <a href="{% url 'upload' %}">UPLOAD</a>
+                {% else %}
+                    UPLOAD
+                {% endif %}
+                photos to our
                 gallery if you have a registration.</p>
         </div>
     {% else %}
