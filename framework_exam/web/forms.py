@@ -120,7 +120,7 @@ class MyClearableFileInput(ClearableFileInput):
 class EditPhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
-        fields = ('photo', 'description')
+        fields = ('description', )
         widgets = {
             'photo': MyClearableFileInput,
             'description': forms.TextInput(
