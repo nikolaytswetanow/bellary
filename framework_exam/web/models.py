@@ -2,6 +2,7 @@ from django.contrib.auth import models as auth_models
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from cloudinary import models as cloudinary_models
 
 from framework_exam.web.managers import AppUsersManager
 
@@ -27,7 +28,8 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
 
 class Photo(models.Model):
-    photo = models.FileField(
+    photo = cloudinary_models.CloudinaryField(
+        'image',
         validators=[FileExtensionValidator(['png', 'jpg'])])
 
     description = models.TextField(
